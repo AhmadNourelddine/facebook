@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>FaceBook</title>
+</head>
+
+<body>
+  <div class="home-page-container">
+    <div class="menu-container">
+      <div class="menu-items">
+        <ul>
+          <div class="" id="post">
+            <li>post</li>
+          </div>
+          <div class="" id="newsfeed">
+            <li>newsfeed</li>
+          </div>
+          <div class="" id="friends">
+            <li>friends</li>
+          </div>
+          <div class="" id="profile">
+            <li>profile</li>
+          </div>
+        </ul>
+      </div>
+    </div>
+    <div class="pages-container" id="pagesContainer">
+      <h1>FaceBook</h1>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <script type="text/javascript">
+
+    window.onload = () => {
+
+      var pagesContainer = document.getElementById('pagesContainer')
+
+      document.getElementById('post').addEventListener('click', navigateWritePost)
+      document.getElementById('friends').addEventListener('click', navigateFriends)
+      document.getElementById('newsfeed').addEventListener('click', navigateNewsFeed)
+      document.getElementById('profile').addEventListener('click', navigateProfile)
+
+      var user_id = 1
+
+      async function fetchAPI(url,obj){
+          await axios.post(url, obj)
+          .then(async (resp) => {
+              console.log(resp)
+              return resp
+            })
+            .catch((e) =>{console.log(e)})
+      }
+
+      async function navigateFriends() {
+
+        let url = 'http://localhost/facebook/facebook/api/friends.php'
+        let object = {'id' : user_id}
+        let data = await axios.post(url, object)
+            .then(async (resp) => {
+                // console.log(resp)
+                return resp.data
+              })
+              .catch((e) =>{console.log(e)})
+       console.log(data)
+
+       pagesContainer.innerHTML = ''
+       var i=1;
+       while(data['user'+i])
+       {
+         let friend = data['user'+i]
+         pagesContainer.innerHTML +='<div class="friend-container" id="'+friend['id']+'">'+
+          '<div class="user-profile">'+
+          '<div class="user-image-name-date">'+
+          '<img src="./pp.png" width="5%" height="5%" alt="">'+
+          '<div class="user-name-date">'+
+          '<p>'+friend['name']+'</p><p>'+friend['email']+'</p>'+
+          '</div></div></div></div>'
+         i=i+1
+       }
+
+      }
+
+
+      async function navigateProfile(){
+
+        let url = 'http://localhost/facebook/facebook/api/userPosts.php'
+        let object = {'id' : user_id}
+        let data = await axios.post(url, object)
+            .then(async (resp) => {
+                // console.log(resp)
+                return resp.data
+              })
+              .catch((e) =>{console.log(e)})
+       console.log(data)
+      pagesContainer.innerHTML=''
+      var i=1;
+      while(data['post'+i])
+      {
+        let post = data['post'+i];
+         pagesContainer.innerHTML +='<div class="post-container">'+
+         '<div class="user-profile">'+
+         '<div class="user-image-name-date">'+
+         '<img src="./pp.png" width="5%" height="5%" alt="">'+
+         '<div class="user-name-date">'+
+         '<p>ahmad nrdn</p><p>'+post['post_date']+'</p>'+
+         '</div></div></div>'+
+         '<div class="post-text">'+
+         '<p>'+post['text']+'</p>'+
+         '</div>'+
+         '</div>'
+        i=i+1
+      }
+
+    }
+
+    async function navigateNewsFeed(){
+
+      let url = 'http://localhost/facebook/facebook/api/friendsPosts.php'
+      let object = {'id' : user_id}
+      let data = await axios.post(url, object)
+          .then(async (resp) => {
+              // console.log(resp)
+              return resp.data
+            })
+            .catch((e) =>{console.log(e)})
+     console.log(data)
+    pagesContainer.innerHTML=''
+    var i=1;
+    while(data['post'+i])
+    {
+       let post = data['post'+i]
+        pagesContainer.innerHTML +='<div class="post-container">'+
+       '<div class="user-profile">'+
+       '<div class="user-image-name-date">'+
+       '<img src="./pp.png" width="5%" height="5%" alt="">'+
+       '<div class="user-name-date">'+
+       '<p>'+post['name']+'</p><p>'+post['post_date']+'</p>'+
+       '</div></div></div>'+
+       '<div class="post-text">'+
+       '<p>'+post['text']+'</p>'+
+       '<p>Likes '+post['likes']+'</p>'+
+       '</div>'+
+       '</div>'
+      i=i+1
+    }
+  }
+
+  async function navigateWritePost(){
+
+  pagesContainer.innerHTML=''
+
+  pagesContainer.innerHTML += '<div class="write-post-container">'+
+     '<div class="post-input">'+
+     '<input type="text" name="" value="" id="input-post">'+
+     '</div>'+
+     '<button type="button" name="button" id="user-post-btn">Post</button>'+
+     '</div>'
+
+  document.getElementById('user-post-btn').addEventListener('click',postTodb)
+
+  async function postTodb()
+  {
+    let text = document.getElementById('input-post').value
+    let url = 'http://localhost/facebook/facebook/api/writePost.php'
+    let object = {'user_id' : user_id,
+                  'text': text}
+    let data = await axios.post(url, object)
+        .then(async (resp) => {
+            console.log("post sent successfully")
+            return resp.data
+          })
+          .catch((e) =>{console.log(e)})
+   console.log(data)
+  }
+
+}
+
+    }
+  </script>
+</body>
+
+</html>
