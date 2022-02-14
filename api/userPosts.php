@@ -9,7 +9,7 @@ else {
   die("no required information");
 }
 
-$get_friends_id = $mysqli->prepare("SELECT p.*,count(l.user_like_id) likes from posts p inner join likes l where p.user_id=? and l.post_id=p.id group by p.id");
+$get_friends_id = $mysqli->prepare("SELECT p.*,count(l.user_like_id) likes from posts p left join likes l on l.post_id=p.id where p.user_id=? group by p.id");
 $get_friends_id->bind_param("s",$id);
 $get_friends_id-> execute();
 $array =  $get_friends_id-> get_result();
