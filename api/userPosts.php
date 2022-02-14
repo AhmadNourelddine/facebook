@@ -1,9 +1,11 @@
 <?php
 include("db_info.php");
 
-if(isset($_GET['id']))
+$array = json_decode(file_get_contents("php://input"), true);
+$value = $array['id'];
+if($value)
 {
-  $id = $_GET['id'];
+  $id = $value;
 }
 else {
   die("no required information");
