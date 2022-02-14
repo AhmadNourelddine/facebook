@@ -45,7 +45,7 @@
       document.getElementById('newsfeed').addEventListener('click', navigateNewsFeed)
       document.getElementById('profile').addEventListener('click', navigateProfile)
 
-      var user_id = 1
+      var user_id = window.localStorage.getItem('user_id')
 
       async function fetchAPI(url,obj){
           await axios.post(url, obj)
@@ -62,7 +62,6 @@
         let object = {'id' : user_id}
         let data = await axios.post(url, object)
             .then(async (resp) => {
-                // console.log(resp)
                 return resp.data
               })
               .catch((e) =>{console.log(e)})
