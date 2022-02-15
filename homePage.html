@@ -3,26 +3,35 @@
 
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css" integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
   <title>FaceBook</title>
 </head>
 
 <body>
   <div class="home-page-container">
     <div class="menu-container">
+
+      <div class="user-profile-menu">
+        <img src="pp.png" width="70px" height="70px" alt="" id="user-menu-img">
+        <div class="user-menu-name-email">
+          <p id="user-menu-name"></p>
+          <p id="user-menu-email"></p>
+        </div>
+      </div>
       <div class="menu-items">
         <ul>
-          <div class="" id="post">
-            <li>post</li>
+          <div class="menu-item" id="post">
+          <i class="fa-solid fa-pen-to-square"></i>  <li>post</li>
           </div>
-          <div class="" id="newsfeed">
-            <li>newsfeed</li>
+          <div class="menu-item" id="newsfeed">
+            <i class="fa-solid fa-newspaper"></i><li>newsfeed</li>
           </div>
-          <div class="" id="friends">
-            <li>friends</li>
+          <div class="menu-item" id="friends">
+            <i class="fa-solid fa-user-group"></i><li>friends</li>
           </div>
-          <div class="" id="profile">
-            <li>profile</li>
+          <div class="menu-item" id="profile">
+            <i class="fa-solid fa-user"></i><li>profile</li>
           </div>
         </ul>
       </div>
@@ -46,6 +55,16 @@
       document.getElementById('profile').addEventListener('click', navigateProfile)
 
       var user_id = window.localStorage.getItem('user_id')
+      var user_email = window.localStorage.getItem('user_email')
+      var user_name = window.localStorage.getItem('user_name')
+
+      setMenuProfile()
+
+      function setMenuProfile()
+      {
+        document.getElementById('user-menu-name').innerText=user_name
+        document.getElementById('user-menu-email').innerText=user_email
+      }
 
       async function fetchAPI(url,obj){
           await axios.post(url, obj)
@@ -136,9 +155,9 @@
         pagesContainer.innerHTML +='<div class="post-container">'+
        '<div class="user-profile">'+
        '<div class="user-image-name-date">'+
-       '<img src="./pp.png" width="5%" height="5%" alt="">'+
+       '<img src="./pp.png" width="10%" height="10%" alt="">'+
        '<div class="user-name-date">'+
-       '<p>'+post['name']+'</p><p>'+post['post_date']+'</p>'+
+       '<p class="post-user-name">'+post['name']+'</p><p class="post-date">'+post['post_date']+'</p>'+
        '</div></div></div>'+
        '<div class="post-text">'+
        '<p>'+post['text']+'</p>'+

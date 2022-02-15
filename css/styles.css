@@ -4,17 +4,43 @@ body{margin:0;}
   display: flex;
   flex-direction: row;
 }
+.user-profile-menu{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: fixed;
+}
+.user-menu-name-email{
+  margin: 0% 5%;
+}
+
+#user-menu-img{
+  border-radius: 50%;
+}
 
 .menu-container {
   width: 30%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+  padding: 2% 3%;
 }
 
 .menu-items{
   position: fixed;
+  top:30%;
+  left:5%;
+}
+
+.menu-items li{
+  list-style-type: none;
+  margin:40% 10%;
+}
+
+.menu-item{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .pages-container {
