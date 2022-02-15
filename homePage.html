@@ -164,7 +164,17 @@
             console.log(e)
           })
         console.log(data)
-
+        // pagesContainer.innerHTML = '<div class="wrap">'+
+        //                             '<div class="search">'+
+        //                            '<input type="text" class="searchTerm" placeholder="What are you looking for?">'+
+        //                            '<button type="submit" class="searchButton">'+
+        //                            '<i class="fa fa-search"></i>'+
+        //                            '</button>'+
+        //                            '</div>'+
+        //                           '</div>'
+        pagesContainer.innerHTML = '<div class="search-container">'+
+                                   '<input value="" name="" placeholder="Add Friends">'+
+                                   '<i class="fa-solid fa-magnifying-glass fa-3x" id="search"></i></div>'
         var i = 1
         while (data['post' + i]) {
           let post = data['post' + i];
