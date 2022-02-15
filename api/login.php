@@ -3,8 +3,13 @@ include("db_info.php");
 
 $array = json_decode(file_get_contents("php://input"), true);
 // print_r($array);
-$email = $array['email'];
-$pass = $array['pass'];
+if(isset($array['email']) && isset($array['pass']))
+{
+  $email = $array['email'];
+  $pass = $array['pass'];
+}else {
+  die("no required information");
+}
 
 $check_user_exist = $mysqli-> prepare("select * from users where email=? and password=?");
 $check_user_exist->bind_param("ss",$email,$pass);

@@ -1,11 +1,12 @@
 <?php
 include("db_info.php");
 
-if(isset($_GET['email']) && isset($_GET['pass']) && isset($_GET['username']))
+$array = json_decode(file_get_contents("php://input"), true);
+if(isset($array['email']) && isset($array['pass']) && isset($array['username']))
 {
-  $email = $_GET['email'];
-  $password = hash('sha256',$_GET['pass']);
-  $username = $_GET['username'];
+  $email = $array['email'];
+  $password = hash('sha256',$array['pass']);
+  $username = $array['username'];
 }
 else {
   die("no required information");

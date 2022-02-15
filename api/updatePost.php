@@ -2,10 +2,11 @@
 
 include("db_info.php");
 
-if(isset($_GET['post_id']) && isset($_GET['text']))
+$array = json_decode(file_get_contents("php://input"), true);
+if(isset($array['post_id']) && isset($array['text']))
 {
-  $post_id = $_GET['post_id'];
-  $text = $_GET['text'];
+  $post_id = $array['post_id'];
+  $text = $array['text'];
 }
 else {
   die("no required information");

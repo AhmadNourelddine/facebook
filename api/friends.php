@@ -2,10 +2,10 @@
 include("db_info.php");
 
 $array = json_decode(file_get_contents("php://input"), true);
-$value = $array['id'];
-if($value)
+
+if(isset($array['id']))
 {
-  $id = $value;
+  $id = $array['id'];
 }
 else {
   die("no required information");

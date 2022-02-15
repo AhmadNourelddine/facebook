@@ -3,8 +3,14 @@
 include("db_info.php");
 
 $array = json_decode(file_get_contents("php://input"), true);
-$user_id = $array['user_id'];
-$post_text = $array['text'];
+
+if(isset($array['user_id']) && isset($array['text']))
+{
+  $user_id = $array['user_id'];
+  $post_text = $array['text'];
+}else {
+  die("no required information");
+}
 
 if($post_text == NULL)
 {

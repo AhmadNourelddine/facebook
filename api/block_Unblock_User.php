@@ -2,11 +2,13 @@
 
 include("db_info.php");
 
-if(isset($_GET['user_id']) && isset($_GET['block_user_id']) && isset($_GET['set_block']))
+$array = json_decode(file_get_contents("php://input"), true);
+
+if(isset($array['user_id']) && isset($array['block_user_id']) && isset($array['set_block']))
 {
-  $user_id = $_GET['user_id'];
-  $block_user_id = $_GET['block_user_id'];
-  $set_block = $_GET['set_block'];
+  $user_id = $array['user_id'];
+  $block_user_id = $array['block_user_id'];
+  $set_block = $array['set_block'];
 }
 else {
   die("no required information");

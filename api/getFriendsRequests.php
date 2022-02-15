@@ -2,14 +2,15 @@
 include("db_info.php");
 
 $array = json_decode(file_get_contents("php://input"), true);
-$value = $array['id'];
-if($value)
+
+if(isset($array['id']))
 {
-  $id = $value;
+  $id = $array['id'];
 }
 else {
   die("no required information");
 }
+
 
 $get_friends_id = $mysqli->prepare("select u.* from friends_requests fr inner join users u on fr.user_requester_id=u.id and fr.user_id=?");
 $get_friends_id->bind_param("s",$id);

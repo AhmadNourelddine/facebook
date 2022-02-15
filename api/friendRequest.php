@@ -2,10 +2,12 @@
 
 include("db_info.php");
 
-if(isset($_GET['friend_id']) && isset($_GET['user_requestor_id']))
+$array = json_decode(file_get_contents("php://input"), true);
+
+if(isset($array['friend_id']) && isset($array['user_requestor_id']))
 {
-  $user_id = $_GET['friend_id'];
-  $friend_id = $_GET['user_requestor_id'];
+  $user_id = $array['friend_id'];
+  $friend_id = $array['user_requestor_id'];
 }
 else {
   die("no required information");

@@ -2,14 +2,15 @@
 include("db_info.php");
 
 $array = json_decode(file_get_contents("php://input"), true);
-$value = $array['id'];
-if($value)
+
+if(isset($array['id']))
 {
-  $id = $value;
+  $id = $array['id'];
 }
 else {
   die("no required information");
 }
+
 
 $get_friends_id = $mysqli->prepare("SELECT p.*,count(l.user_like_id) likes from posts p left join likes l on l.post_id=p.id where p.user_id=? group by p.id");
 $get_friends_id->bind_param("s",$id);
