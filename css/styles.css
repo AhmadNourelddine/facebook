@@ -1,36 +1,43 @@
-body{
-      margin:0;
-      padding: 0;
-      font-family: 'Poppins', sans-serif;
-    }
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
 
 .home-page-container {
   display: flex;
   flex-direction: row;
 }
-.user-profile-menu{
+
+.user-profile-menu {
   display: flex;
   flex-direction: row;
   align-items: center;
   position: fixed;
 }
-.user-menu-name-email{
+
+.user-menu-name-email {
   margin: 0% 5%;
 }
-.user-menu-name-email p{
-  margin:0;
+
+.user-menu-name-email p {
+  margin: 0;
 }
-#user-menu-img{
+
+#user-menu-img {
   border-radius: 50%;
 }
-#user-menu-name{
+
+#user-menu-name {
   font-size: 150%;
   font-weight: bolder;
 }
-#user-menu-email{
+
+#user-menu-email {
   font-size: 100%;
   font-weight: lighter;
 }
+
 .menu-container {
   width: 25%;
   display: flex;
@@ -39,33 +46,39 @@ body{
   padding: 2% 3%;
 }
 
-.menu-items{
+.menu-items {
   position: fixed;
-  top:8em;
-  margin:auto;
+  top: 8em;
+  margin: auto;
 }
-.menu-items ul{
+
+.menu-items ul {
   padding: 0;
 }
-.menu-items li{
+
+.menu-items li {
   list-style-type: none;
-  margin:1.5em 1em;
+  margin: 1.5em 1em;
   color: #1f4c8f;
 }
-.menu-items i{
+
+.menu-items i {
   margin-right: 0.5em;
   color: #1f4c8f;
 }
-.menu-item{
+
+.menu-item {
   display: flex;
   flex-direction: row;
   align-items: center;
   width: inherit;
 }
-.menu-item:hover{
+
+.menu-item:hover {
   opacity: 0.7;
 }
-.menu-logout{
+
+.menu-logout {
   position: fixed;
   display: flex;
   flex-direction: row;
@@ -75,14 +88,17 @@ body{
   bottom: 1em;
   color: #8f2a1f;
 }
-.menu-logout i{
+
+.menu-logout i {
   transform: scaleX(-1);
   margin-right: 5%;
   color: #8f2a1f;
 }
-.menu-logout:hover{
+
+.menu-logout:hover {
   opacity: 0.6;
 }
+
 .pages-container {
   border-radius: 25px;
   height: 90vh;
@@ -95,121 +111,158 @@ body{
   overflow-y: scroll;
 }
 
-.friend-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 5% 10%;
-}
-
 .post-container {
   border-radius: 25px;
   background-color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 5% 10%;
-  padding:5%;
+  margin: 2% 10%;
+  padding: 5%;
   border: 1px solid;
   padding: 10px;
   box-shadow: 5px 10px rgb(0 0 0 / 50%);
 }
-.user-profile{
+
+.post-container i {
+  color: #1f4c8f;
+}
+
+.user-profile {
   display: flex;
   flex-direction: row;
+  align-self: flex-end;
+  padding: 0% 3%;
 }
-.user-image-name-date img{
+
+.user-image-name-date img {
   border-radius: 50%;
   margin-right: 3%;
 }
-.user-image-name-date i{
-  align-self: flex-end;
-}
+
 .user-image-name-date {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
 }
-.user-name-date p{
-  margin:0;
-  padding:0;
+
+.user-name-date p {
+  margin: 0;
+  padding: 0;
 }
-.post-user-name{
+
+.post-user-name {
   font-weight: bolder;
   font-size: 150%;
 }
-.post-date{
+
+.post-date {
   font-weight: lighter;
 }
-.post-text{
-  margin-top:3%;
+
+.users-likes {
+  align-self: flex-end;
+}
+
+.post-text {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3%;
   background-color: #f5f5f5;
   border-radius: 25px;
-  padding:5%;
-  color:black;
+  padding: 5%;
+  color: black;
 }
-.write-post-container{
+
+.write-post-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.post-input input{
+
+.post-input input {
   width: 200%;
   height: 50vh;
-  align-self:flex-start;
+  align-self: flex-start;
 }
 
-.friend-container{
+.friend-container {
   border-radius: 25px;
   background-color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 5% 10%;
-  padding:5%;
+  align-items: center;
+  margin: 2% 10%;
+  padding: 5%;
   border: 1px solid;
   padding: 10px;
   box-shadow: 5px 10px rgb(0 0 0 / 50%);
 }
-
-.friends-requests-btn{
+.navbar-friends{
+  width: inherit;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.friends-btn{
   border-radius: 25px;
   background-color: white;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
   align-items: center;
+  justify-content: center;
   width: inherit;
   margin: 5% 10%;
-  padding:0% 5%;
+  padding: 0% 5%;
 }
+.friends-requests-btn {
+  border-radius: 25px;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: inherit;
+  margin: 5% 10%;
+  padding: 0% 5%;
+}
+
+.friends-btn i{
+  margin-right: 1em;
+}
+
 .friends-requests-btn i{
-  margin-right: 3%;
+  margin-right: 1em;
 }
-.accept-reject{
+
+.accept-reject {
   align-self: flex-end;
   display: flex;
 }
-.accept-reject p{
+
+.accept-reject p {
   margin-left: 0.5em;
 }
-#accept, #reject{
-margin-left: 1.5em;
-display: flex;
-justify-content: center;
-align-items: center;
+
+#accept, #reject {
+  margin-left: 1.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.search-container{
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-margin: 5%;
-width: inherit;
+
+.search-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 5%;
+  width: inherit;
 }
-.search-container input{
+
+.search-container input {
   background: none;
   border: none;
   border-left: black solid 4px;
@@ -218,6 +271,7 @@ width: inherit;
   padding: 0% 5%;
   width: inherit;
 }
+
 ::placeholder {
   color: black;
   opacity: 0.6;

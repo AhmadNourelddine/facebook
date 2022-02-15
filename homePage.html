@@ -97,7 +97,9 @@
           })
         console.log(data)
 
-        pagesContainer.innerHTML = '<div class="friends-requests-btn" id="requests"><i class="fa-solid fa-bell fa-lg"></i><p>Requests</p></div>'
+        pagesContainer.innerHTML = '<div class="navbar-friends"><div class="friends-requests-btn" id="requests">'+
+                                   '<i class="fa-solid fa-bell fa-lg"></i><p>Requests</p></div>'+
+                                   '<div class="friends-btn" id="friends-nav"><i class="fa-solid fa-users fa-lg"></i><p>Friends</p></div></div>'
         var i = 1
         while (data['user' + i]) {
           let friend = data['user' + i]
@@ -127,7 +129,11 @@
               console.log(e)
             })
             console.log(data)
-            pagesContainer.innerHTML = ''
+            pagesContainer.innerHTML = '<div class="navbar-friends"><div class="friends-requests-btn" id="requests">'+
+                                       '<i class="fa-solid fa-bell fa-lg"></i><p>Requests</p></div>'+
+                                       '<div class="friends-btn" id="friends-nav"><i class="fa-solid fa-users fa-lg"></i><p>Friends</p></div></div>'
+
+
             var i = 1
             while (data['request' + i]) {
               let friend = data['request' + i]
@@ -144,6 +150,8 @@
                 '</div></div></div></div>'
               i = i + 1
             }
+
+            document.getElementById('friends-nav').addEventListener('click', navigateFriends)
         }
 
       }
@@ -164,14 +172,7 @@
             console.log(e)
           })
         console.log(data)
-        // pagesContainer.innerHTML = '<div class="wrap">'+
-        //                             '<div class="search">'+
-        //                            '<input type="text" class="searchTerm" placeholder="What are you looking for?">'+
-        //                            '<button type="submit" class="searchButton">'+
-        //                            '<i class="fa fa-search"></i>'+
-        //                            '</button>'+
-        //                            '</div>'+
-        //                           '</div>'
+
         pagesContainer.innerHTML = '<div class="search-container">'+
                                    '<input value="" name="" placeholder="Add Friends">'+
                                    '<i class="fa-solid fa-magnifying-glass fa-3x" id="search"></i></div>'
@@ -223,7 +224,7 @@
             '</div></div></div>' +
             '<div class="post-text">' +
             '<p>' + post['text'] + '</p>' +
-            '<p><i class="fa-solid fa-thumbs-up"></i>&nbsp;Likes ' + post['likes'] + '</p>' +
+            '<p class="users-likes" id="likes"'+post['id']+'><i class="fa-solid fa-thumbs-up"></i>&nbsp;Likes ' + post['likes'] + '</p>' +
             '</div>' +
             '</div>'
           i = i + 1
@@ -235,11 +236,11 @@
         pagesContainer.innerHTML = ''
 
         pagesContainer.innerHTML += '<div class="write-post-container">' +
-          '<div class="post-input">' +
-          '<input type="text" name="" value="" id="input-post">' +
-          '</div>' +
-          '<button type="button" name="button" id="user-post-btn">Post</button>' +
-          '</div>'
+              '<div class="post-input">' +
+              '<input type="text" name="" value="" id="input-post">' +
+              '</div>' +
+              '<button type="button" name="button" id="user-post-btn">Post</button>' +
+              '</div>'
 
         document.getElementById('user-post-btn').addEventListener('click', postTodb)
 
