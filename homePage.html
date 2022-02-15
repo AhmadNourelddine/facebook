@@ -3,6 +3,8 @@
 
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css" integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="css/styles.css">
   <title>FaceBook</title>
@@ -22,22 +24,26 @@
       <div class="menu-items">
         <ul>
           <div class="menu-item" id="post">
-          <i class="fa-solid fa-pen-to-square"></i>  <li>post</li>
+          <li><i class="fa-solid fa-pen-to-square fa-2x"></i>post</li>
           </div>
           <div class="menu-item" id="newsfeed">
-            <i class="fa-solid fa-newspaper"></i><li>newsfeed</li>
+            <li><i class="fa-solid fa-newspaper fa-2x"></i>newsfeed</li>
           </div>
           <div class="menu-item" id="friends">
-            <i class="fa-solid fa-user-group"></i><li>friends</li>
+            <li><i class="fa-solid fa-user-group fa-2x"></i>friends</li>
           </div>
           <div class="menu-item" id="profile">
-            <i class="fa-solid fa-user"></i><li>profile</li>
+            <li><i class="fa-solid fa-user fa-2x"></i>profile</li>
           </div>
         </ul>
       </div>
+      <div class="menu-logout" id="logout">
+        <i class="fa-solid fa-right-from-bracket fa-lg"></i>
+        <p>Log Out</p>
+      </div>
     </div>
     <div class="pages-container" id="pagesContainer">
-      <h1>FaceBook</h1>
+
     </div>
   </div>
 
@@ -94,7 +100,7 @@
          pagesContainer.innerHTML +='<div class="friend-container" id="'+friend['id']+'">'+
           '<div class="user-profile">'+
           '<div class="user-image-name-date">'+
-          '<img src="./pp.png" width="5%" height="5%" alt="">'+
+          '<img src="./pp.png" width="10%" height="auto" alt="">'+
           '<div class="user-name-date">'+
           '<p>'+friend['name']+'</p><p>'+friend['email']+'</p>'+
           '</div></div></div></div>'
@@ -123,10 +129,11 @@
          pagesContainer.innerHTML +='<div class="post-container">'+
          '<div class="user-profile">'+
          '<div class="user-image-name-date">'+
-         '<img src="./pp.png" width="5%" height="5%" alt="">'+
+         '<img src="./pp.png" width="10%" height="auto" alt="">'+
          '<div class="user-name-date">'+
          '<p>ahmad nrdn</p><p>'+post['post_date']+'</p>'+
-         '</div></div></div>'+
+         '</div></div>'+
+         '<div id="'+post['id']+'"><i class="fa-solid fa-pen fa-2x"></i></div></div>'+
          '<div class="post-text">'+
          '<p>'+post['text']+'</p>'+
          '</div>'+
@@ -155,7 +162,7 @@
         pagesContainer.innerHTML +='<div class="post-container">'+
        '<div class="user-profile">'+
        '<div class="user-image-name-date">'+
-       '<img src="./pp.png" width="10%" height="10%" alt="">'+
+       '<img src="./pp.png" width="10%" height="auto" alt="">'+
        '<div class="user-name-date">'+
        '<p class="post-user-name">'+post['name']+'</p><p class="post-date">'+post['post_date']+'</p>'+
        '</div></div></div>'+
