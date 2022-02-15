@@ -76,10 +76,15 @@ body{
   transform: scaleX(-1);
   margin-right: 5%;
 }
+.menu-logout:hover{
+  background-color: gray;
+}
 .pages-container {
-  height: 100vh;
+  border-radius: 25px;
+  height: 90vh;
   background-color: gray;
   width: 75%;
+  margin: 2% 3% 0% 0%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -158,4 +163,32 @@ body{
   justify-content: center;
   margin: 5% 10%;
   padding:5%;
+}
+
+.friends-requests-btn{
+  border-radius: 25px;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  width: inherit;
+  margin: 5% 10%;
+  padding:0% 5%;
+}
+.friends-requests-btn i{
+  margin-right: 3%;
+}
+.accept-reject{
+  align-self: flex-end;
+  display: flex;
+}
+.accept-reject p{
+  margin-left: 0.5em;
+}
+#accept, #reject{
+margin-left: 1.5em;
+display: flex;
+justify-content: center;
+align-items: center;
 }
