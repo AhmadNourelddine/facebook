@@ -23,16 +23,76 @@ window.onload = () => {
 
   navigateNewsFeed()
 
-  async function fetchAPI(url, obj) {
-    await axios.post(url, obj)
+  async function navigateWritePost() {
+
+    pagesContainer.innerHTML = ''
+
+    pagesContainer.innerHTML += '<div class="write-post-container">' +
+      '<div class="post-input">' +
+      '<textarea type="text" name="" value="" id="input-post-text" placeholder="Write Post Here ..."></textarea>' +
+      '</div>' +
+      '<button type="button" name="button" id="user-post-btn">Post</button>' +
+      '</div>'
+
+    document.getElementById('user-post-btn').addEventListener('click', postTodb)
+
+    async function postTodb() {
+      let text = document.getElementById('input-post-text').value
+      let url = 'http://localhost/facebook/facebook/api/writePost.php'
+      let object = {
+        'user_id': user_id,
+        'text': text
+      }
+      let data = await axios.post(url, object)
+        .then(async (resp) => {
+          console.log("post sent successfully")
+          return resp.data
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+      console.log(data)
+      navigateNewsFeed()
+    }
+  }
+
+
+  async function navigateNewsFeed() {
+
+    let url = 'http://localhost/facebook/facebook/api/friendsPosts.php'
+    let object = {
+      'id': user_id
+    }
+    let data = await axios.post(url, object)
       .then(async (resp) => {
-        console.log(resp)
-        return resp
+        // console.log(resp)
+        return resp.data
       })
       .catch((e) => {
         console.log(e)
       })
+    console.log(data)
+    pagesContainer.innerHTML = ''
+    var i = 1
+    while (data['post' + i]) {
+      let post = data['post' + i]
+      pagesContainer.innerHTML += '<div class="post-container">' +
+        '<div class="user-profile">' +
+        '<div class="user-image-name-date">' +
+        '<img src="./pp.png" width="10%" height="auto" alt="">' +
+        '<div class="user-name-date">' +
+        '<p class="post-user-name">' + post['name'] + '</p><p class="post-date">' + post['post_date'] + '</p>' +
+        '</div></div></div>' +
+        '<div class="post-text">' +
+        '<p>' + post['text'] + '</p>' +
+        '<p class="users-likes" id="likes"' + post['id'] + '><i class="fa-solid fa-thumbs-up"></i>&nbsp;Likes ' + post['likes'] + '</p>' +
+        '</div>' +
+        '</div>'
+      i = i + 1
+    }
+
   }
+
 
   async function navigateFriends() {
 
@@ -62,12 +122,12 @@ window.onload = () => {
         '<img src="./pp.png" width="10%" height="auto" alt="">' +
         '<div class="user-name-date">' +
         '<p class="friend-name">' + friend['name'] + '</p><p class="friend-email">' + friend['email'] + '</p>' +
-        '</div></div>'+
+        '</div></div>' +
         '<div class="accept-reject"><div class="accept block">' +
         '<i class="fa-solid fa-user-slash fa-lg"></i><p>Block</p></div>' +
         '<div class="reject unfriend"><i class="fa-solid fa-user-xmark fa-lg"></i><p>Unfriend</p>' +
         '</div></div></div></div>'
-        i = i + 1
+      i = i + 1
     }
 
     document.getElementById('requests').addEventListener('click', getRequests)
@@ -113,7 +173,7 @@ window.onload = () => {
         })
     }
 
-    async function unfriend(e){
+    async function unfriend(e) {
 
       function getfriendId() {
         return e.target.parentElement.parentElement.parentElement.id
@@ -134,7 +194,7 @@ window.onload = () => {
         .catch((e) => {
           console.log(e)
         })
-        navigateFriends()
+      navigateFriends()
     }
 
 
@@ -157,22 +217,22 @@ window.onload = () => {
         '<div class="friends-btn" id="friends-nav"><i class="fa-solid fa-users fa-lg"></i><p>Friends</p></div></div>'
 
       async function generateRequests() {
-          var i = 1
-          while (data['request' + i]) {
-            let friend = data['request' + i]
-            pagesContainer.innerHTML += '<div class="friend-container" id="' + friend['id'] + '">' +
-              '<div class="user-profile">' +
-              '<div class="user-image-name-date">' +
-              '<img src="./pp.png" width="10%" height="auto" alt="">' +
-              '<div class="user-name-date">' +
-              '<p class="friend-name">' + friend['name'] + '</p><p class="friend-email">' + friend['email'] + '</p>' +
-              '</div></div>' +
-              '<div class="accept-reject"><div class="accept">' +
-              '<i class="fa-solid fa-circle-check fa-lg"></i><p>accept</p></div>' +
-              '<div class="reject"><i class="fa-solid fa-xmark fa-lg"></i><p>reject</p>' +
-              '</div></div></div></div>'
-            i = i + 1
-          }
+        var i = 1
+        while (data['request' + i]) {
+          let friend = data['request' + i]
+          pagesContainer.innerHTML += '<div class="friend-container" id="' + friend['id'] + '">' +
+            '<div class="user-profile">' +
+            '<div class="user-image-name-date">' +
+            '<img src="./pp.png" width="10%" height="auto" alt="">' +
+            '<div class="user-name-date">' +
+            '<p class="friend-name">' + friend['name'] + '</p><p class="friend-email">' + friend['email'] + '</p>' +
+            '</div></div>' +
+            '<div class="accept-reject"><div class="accept">' +
+            '<i class="fa-solid fa-circle-check fa-lg"></i><p>accept</p></div>' +
+            '<div class="reject"><i class="fa-solid fa-xmark fa-lg"></i><p>reject</p>' +
+            '</div></div></div></div>'
+          i = i + 1
+        }
       }
 
       await generateRequests()
@@ -270,7 +330,7 @@ window.onload = () => {
           '<div class="user-image-name-date">' +
           '<img src="./pp.png" width="10%" height="auto" alt="">' +
           '<div class="user-name-date">' +
-          '<p>ahmad nrdn</p><p>' + post['post_date'] + '</p>' +
+          '<p>' + user_name + '</p><p>' + post['post_date'] + '</p>' +
           '</div></div>' +
           '<div class="edit-post-icon" id="' + post['id'] + '"><i class="fa-solid fa-pen fa-2x"></i></div></div>' +
           '<div class="post-text">' +
@@ -319,24 +379,33 @@ window.onload = () => {
           console.log(e)
         })
 
-      var i = 1
-      while (data['user' + i]) {
-        let friend = data['user' + i]
-        pagesContainer.innerHTML = '<div class="friend-container" id="' + friend['id'] + '">' +
-          '<div class="user-profile">' +
-          '<div class="user-image-name-date">' +
-          '<img src="./pp.png" width="10%" height="auto" alt="">' +
-          '<div class="user-name-date">' +
-          '<p>' + friend['name'] + '</p><p>' + friend['email'] + '</p>' +
-          '</div></div>' +
-          '<div class="add-friend" id="add-search-friend">' +
-          '<i class="fa-solid fa-user-plus fa-lg"></i><p>Add Friend</p></div>' +
-          '</div></div>'
-        i = i + 1
+      function generatefriendsRequests() {
+        pagesContainer.innerHTML = '<div class="search-container">' +
+          '<input value="" name="" placeholder="Add Friends" id="search_input">' +
+          '<i class="fa-solid fa-magnifying-glass fa-3x" id="search"></i></div>'
+
+        var i = 1
+        while (data['user' + i]) {
+          let friend = data['user' + i]
+          pagesContainer.innerHTML += '<div class="friend-container" id="' + friend['id'] + '">' +
+            '<div class="user-profile">' +
+            '<div class="user-image-name-date">' +
+            '<img src="./pp.png" width="10%" height="auto" alt="">' +
+            '<div class="user-name-date">' +
+            '<p>' + friend['name'] + '</p><p>' + friend['email'] + '</p>' +
+            '</div></div>' +
+            '<div class="add-friend" id="' + friend['id'] + '">' +
+            '<i class="fa-solid fa-user-plus fa-lg"></i><p>Add Friend</p></div>' +
+            '</div></div>'
+          i = i + 1
+        }
       }
+      await generatefriendsRequests()
 
-
-      document.getElementById('add-search-friend').addEventListener('click', sendRequest)
+      var sendRequestbtns = document.getElementsByClassName('add-friend')
+      for (var x = 0; x < sendRequestbtns.length; x++) {
+        sendRequestbtns[x].addEventListener('click', sendRequest)
+      }
 
       async function sendRequest(e) {
         var request_friend_id = e.target.parentElement.id
@@ -360,75 +429,7 @@ window.onload = () => {
 
   }
 
-  async function navigateNewsFeed() {
 
-    let url = 'http://localhost/facebook/facebook/api/friendsPosts.php'
-    let object = {
-      'id': user_id
-    }
-    let data = await axios.post(url, object)
-      .then(async (resp) => {
-        // console.log(resp)
-        return resp.data
-      })
-      .catch((e) => {
-        console.log(e)
-      })
-    console.log(data)
-    pagesContainer.innerHTML = ''
-    var i = 1
-    while (data['post' + i]) {
-      let post = data['post' + i]
-      pagesContainer.innerHTML += '<div class="post-container">' +
-        '<div class="user-profile">' +
-        '<div class="user-image-name-date">' +
-        '<img src="./pp.png" width="10%" height="auto" alt="">' +
-        '<div class="user-name-date">' +
-        '<p class="post-user-name">' + post['name'] + '</p><p class="post-date">' + post['post_date'] + '</p>' +
-        '</div></div></div>' +
-        '<div class="post-text">' +
-        '<p>' + post['text'] + '</p>' +
-        '<p class="users-likes" id="likes"' + post['id'] + '><i class="fa-solid fa-thumbs-up"></i>&nbsp;Likes ' + post['likes'] + '</p>' +
-        '</div>' +
-        '</div>'
-      i = i + 1
-    }
-
-
-  }
-
-  async function navigateWritePost() {
-
-    pagesContainer.innerHTML = ''
-
-    pagesContainer.innerHTML += '<div class="write-post-container">' +
-      '<div class="post-input">' +
-      '<textarea type="text" name="" value="" id="input-post-text" placeholder="Write Post Here ..."></textarea>' +
-      '</div>' +
-      '<button type="button" name="button" id="user-post-btn">Post</button>' +
-      '</div>'
-
-    document.getElementById('user-post-btn').addEventListener('click', postTodb)
-
-    async function postTodb() {
-      let text = document.getElementById('input-post-text').value
-      let url = 'http://localhost/facebook/facebook/api/writePost.php'
-      let object = {
-        'user_id': user_id,
-        'text': text
-      }
-      let data = await axios.post(url, object)
-        .then(async (resp) => {
-          console.log("post sent successfully")
-          return resp.data
-        })
-        .catch((e) => {
-          console.log(e)
-        })
-      console.log(data)
-      navigateNewsFeed()
-    }
-  }
 
   async function navigateEditPost() {
 
