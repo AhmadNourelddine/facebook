@@ -402,7 +402,9 @@ window.onload = () => {
       }
       await generatefriendsRequests()
 
+      document.getElementById('search').addEventListener('click', search)
       var sendRequestbtns = document.getElementsByClassName('add-friend')
+
       for (var x = 0; x < sendRequestbtns.length; x++) {
         sendRequestbtns[x].addEventListener('click', sendRequest)
       }
