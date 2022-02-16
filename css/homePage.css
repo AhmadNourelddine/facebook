@@ -118,9 +118,8 @@ body {
   flex-direction: column;
   justify-content: center;
   margin: 2% 10%;
-  padding: 5%;
+  padding: 3%;
   border: 1px solid;
-  padding: 10px;
   box-shadow: 5px 10px rgb(0 0 0 / 50%);
 }
 
@@ -191,6 +190,8 @@ body {
   border-radius: 20px;
   width: 80%;
   height: 50vh;
+  border: 1px solid;
+  box-shadow: -15px 8px rgb(0 0 0 / 50%);
 }
 
 .friend-container {
@@ -246,6 +247,14 @@ body {
   margin-right: 1em;
 }
 
+.friend-name {
+  font-weight: bold;
+}
+
+.friend-email {
+  font-weight: lighter;
+}
+
 .accept-reject {
   align-self: flex-end;
   display: flex;
@@ -298,5 +307,4 @@ body {
 
 .add-friend i {
   margin-right: 1em;
-}
 }
