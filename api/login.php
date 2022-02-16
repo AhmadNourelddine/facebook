@@ -6,7 +6,7 @@ $array = json_decode(file_get_contents("php://input"), true);
 if(isset($array['email']) && isset($array['pass']))
 {
   $email = $array['email'];
-  $pass = $array['pass'];
+  $pass = hash('sha256',$array['pass']);
 }else {
   die("no required information");
 }

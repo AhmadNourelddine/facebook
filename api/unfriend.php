@@ -5,7 +5,7 @@ $array = json_decode(file_get_contents("php://input"), true);
 
 if(isset($array['user_id']) && isset($array['unfriend_id']))
 {
-  $user_id = $array['id'];
+  $user_id = $array['user_id'];
   $unfriend_id = $array['unfriend_id'];
 }
 else {
@@ -13,7 +13,7 @@ else {
 }
 
 $delete_request = $mysqli->prepare("delete from friends where friend1_id=? and friend2_id=? or friend2_id=? and friend1_id=?");
-$delete_request->bind_param("ss",$user_id,$unfriend_id,$user_id,$unfriend_id);
+$delete_request->bind_param("ssss",$user_id,$unfriend_id,$user_id,$unfriend_id);
 $delete_request-> execute();
 $array =  $delete_request-> get_result();
 
