@@ -12,8 +12,8 @@ else {
   die("no required information");
 }
 
-$search_user = $mysqli->prepare("select u.id, u.name, u.email from users u where u.name=? or u.name like ? or u.name like ? or u.name like ?");
-$search_user->bind_param("ssss",$user_name,'%'.$user_name.'%','%'.$user_name,$user_name.'%');
+$search_user = $mysqli->prepare("select u.id, u.name, u.email from users u where u.name=?");
+$search_user->bind_param("s",$user_name);
 $search_user-> execute();
 $array =  $search_user-> get_result();
 

@@ -13,7 +13,7 @@ else {
 }
 
 $delete_request = $mysqli->prepare("delete from friends_requests where user_requester_id=? and user_id=?");
-$delete_request->bind_param("ss",$requester,$user_id);
+$delete_request->bind_param("ss",$requester_id,$user_id);
 $delete_request-> execute();
 $array =  $delete_request-> get_result();
 

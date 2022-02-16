@@ -4,13 +4,13 @@ include("db_info.php");
 
 $array = json_decode(file_get_contents("php://input"), true);
 
-if(isset($array['friend_id']) && isset($array['user_requestor_id']))
+if(isset($array['friend_id']) && isset($array['user_requester_id']))
 {
-  $user_id = $array['friend_id'];
-  $friend_id = $array['user_requestor_id'];
+  $friend_id = $array['friend_id'];
+  $user_id = $array['user_requester_id'];
 }
 else {
-  die("no required information");
+  echo("no required information");
 }
 
 $check_friends = $mysqli->prepare("select 1 from friends f where f.friend1_id=? and f.friend2_id=? or f.friend2_id=? and f.friend1_id=?");
