@@ -18,12 +18,14 @@ $check_friends->bind_param("ssss",$user_id,$friend_id,$user_id,$friend_id);
 $check_friends->execute();
 $array =  $check_friends-> get_result();
 
+$result=[];
+
 if($array->num_rows>0)
 {
    $result['status']= false;
    die("already friends");
 }
-$result=[];
+
 
 $friend_request = $mysqli->prepare("insert into friends_requests (user_id,user_requester_id) values(?,?)");
 $friend_request->bind_param("ss",$friend_id,$user_id);
