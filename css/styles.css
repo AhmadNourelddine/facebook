@@ -247,7 +247,7 @@ body {
   margin-left: 0.5em;
 }
 
-#accept, #reject {
+.accept, .reject {
   margin-left: 1.5em;
   display: flex;
   justify-content: center;
