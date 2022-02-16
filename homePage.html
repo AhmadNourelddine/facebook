@@ -174,7 +174,7 @@
         console.log(data)
 
         pagesContainer.innerHTML = '<div class="search-container">'+
-                                   '<input value="" name="" placeholder="Add Friends">'+
+                                   '<input value="" name="" placeholder="Add Friends" id="search_input">'+
                                    '<i class="fa-solid fa-magnifying-glass fa-3x" id="search"></i></div>'
         var i = 1
         while (data['post' + i]) {
@@ -193,6 +193,66 @@
             '</div>'
           i = i + 1
         }
+
+        document.getElementById('search').addEventListener('click',search)
+
+        async function search()
+        {
+          let search_name = document.getElementById('search_input').value
+          let url = 'http://localhost/facebook/facebook/api/searchUsers.php'
+          let object = {
+            'user_name': search_name
+          }
+          let data = await axios.post(url, object)
+            .then(async (resp) => {
+              console.log(resp)
+              return resp.data
+            })
+            .catch((e) => {
+              console.log(e)
+            })
+
+            var i = 1
+            while (data['user' + i]) {
+              let friend = data['user' + i]
+              pagesContainer.innerHTML = '<div class="friend-container" id="' + friend['id'] + '">' +
+                '<div class="user-profile">' +
+                '<div class="user-image-name-date">' +
+                '<img src="./pp.png" width="10%" height="auto" alt="">' +
+                '<div class="user-name-date">' +
+                '<p>' + friend['name'] + '</p><p>' + friend['email'] + '</p>' +
+                '</div></div>'+
+                '<div class="add-friend" id="add-search-friend">'+
+                '<i class="fa-solid fa-user-plus fa-lg"></i><p>Add Friend</p></div>'+
+                '</div></div>'
+              i = i + 1
+            }
+
+
+            document.getElementById('add-search-friend').addEventListener('click',sendRequest)
+            
+            async function sendRequest(e)
+            {
+              var request_friend_id = e.target.parentElement.id
+              console.log(request_friend_id)
+              let url = 'http://localhost/facebook/facebook/api/friendRequest.php'
+              let object = {
+                'friend_id': request_friend_id,
+                'user_requester_id': user_id
+              }
+              let data = await axios.post(url, object)
+                .then(async (resp) => {
+                  console.log(resp)
+                  return resp.data
+                })
+                .catch((e) => {
+                  console.log(e)
+                })
+
+            }
+        }
+
+
 
       }
 
@@ -229,6 +289,8 @@
             '</div>'
           i = i + 1
         }
+
+
       }
 
       async function navigateWritePost() {

@@ -274,5 +274,20 @@ body {
 
 ::placeholder {
   color: black;
-  opacity: 0.6;
+  opacity: 0.7;
+}
+
+.add-friend{
+  align-self: flex-end;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.add-friend p{
+  width: max-content;
+}
+.add-friend i{
+ margin-right: 1em;
+}
+
 }
