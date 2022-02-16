@@ -176,16 +176,21 @@ body {
 }
 
 .write-post-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  width: inherit;
+  align-self: center;
+  margin: auto 40%;
 }
 
-.post-input input {
-  width: 200%;
+.write-post-container::placeholder {
+  text-align: top;
+}
+
+.post-input textarea {
+  padding: 5%;
+  resize: none;
+  border-radius: 20px;
+  width: 80%;
   height: 50vh;
-  align-self: flex-start;
 }
 
 .friend-container {
@@ -201,13 +206,15 @@ body {
   padding: 10px;
   box-shadow: 5px 10px rgb(0 0 0 / 50%);
 }
-.navbar-friends{
+
+.navbar-friends {
   width: inherit;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
-.friends-btn{
+
+.friends-btn {
   border-radius: 25px;
   background-color: white;
   display: flex;
@@ -218,6 +225,7 @@ body {
   margin: 5% 10%;
   padding: 0% 5%;
 }
+
 .friends-requests-btn {
   border-radius: 25px;
   background-color: white;
@@ -230,11 +238,11 @@ body {
   padding: 0% 5%;
 }
 
-.friends-btn i{
+.friends-btn i {
   margin-right: 1em;
 }
 
-.friends-requests-btn i{
+.friends-requests-btn i {
   margin-right: 1em;
 }
 
@@ -277,17 +285,18 @@ body {
   opacity: 0.7;
 }
 
-.add-friend{
+.add-friend {
   align-self: flex-end;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.add-friend p{
+
+.add-friend p {
   width: max-content;
 }
-.add-friend i{
- margin-right: 1em;
-}
 
+.add-friend i {
+  margin-right: 1em;
+}
 }
