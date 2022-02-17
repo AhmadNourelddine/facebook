@@ -266,6 +266,18 @@ body {
   font-weight: lighter;
 }
 
+.block:hover {
+  opacity: 0.6;
+}
+.accept:hover {
+  opacity: 0.6;
+}
+.reject:hover {
+  opacity: 0.6;
+}
+
+
+
 .accept-reject {
   align-self: flex-end;
   display: flex;
