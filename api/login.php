@@ -11,7 +11,7 @@ if(isset($array['email']) && isset($array['pass']))
   die("no required information");
 }
 
-$check_user_exist = $mysqli-> prepare("select * from users where email=? and password=?");
+$check_user_exist = $mysqli-> prepare("select u.name,u.email,u.id from users u where email=? and password=?");
 $check_user_exist->bind_param("ss",$email,$pass);
 $check_user_exist-> execute();
 $array =  $check_user_exist-> get_result();
