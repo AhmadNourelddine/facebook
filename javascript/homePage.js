@@ -401,7 +401,7 @@ window.onload = () => {
           '<div class="user-image-name-date">' +
           '<img src="./assets/pp.png" width="10%" height="auto" alt="">' +
           '<div class="user-name-date">' +
-          '<p>' + user_name + '</p><p>' + post['post_date'] + '</p>' +
+          '<p style="font-weight:bolder">' + user_name + '</p><p>' + post['post_date'] + '</p>' +
           '</div></div>' +
           '<div class="edit-post-icon" id="' + post['id'] + '"><i class="fa-solid fa-pen fa-2x"></i></div></div>' +
           '<div class="post-text">' +
@@ -500,6 +500,8 @@ window.onload = () => {
           pagesContainer.innerHTML = '<div class="search-container">' +
             '<input value="" name="" placeholder="Add Friends" id="search_input">' +
             '<i class="fa-solid fa-magnifying-glass fa-3x" id="search"></i></div>'
+
+              document.getElementById('search').addEventListener('click', search)
 
       }
     }
