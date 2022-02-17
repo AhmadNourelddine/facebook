@@ -19,6 +19,7 @@ window.onload = () => {
   function setMenuProfile() {
     document.getElementById('user-menu-name').innerText = user_name
     document.getElementById('user-menu-email').innerText = user_email
+    document.getElementById('user-menu-img').src = 'assets/pp.png'
   }
 
   navigateNewsFeed()
@@ -79,7 +80,7 @@ window.onload = () => {
       pagesContainer.innerHTML += '<div class="post-container">' +
         '<div class="user-profile">' +
         '<div class="user-image-name-date">' +
-        '<img src="./pp.png" width="10%" height="auto" alt="">' +
+        '<img src="./assets/pp.png" width="10%" height="auto" alt="">' +
         '<div class="user-name-date">' +
         '<p class="post-user-name">' + post['name'] + '</p><p class="post-date">' + post['post_date'] + '</p>' +
         '</div></div></div>' +
@@ -119,7 +120,7 @@ window.onload = () => {
       pagesContainer.innerHTML += '<div class="friend-container" id="' + friend['id'] + '">' +
         '<div class="user-profile">' +
         '<div class="user-image-name-date">' +
-        '<img src="./pp.png" width="10%" height="auto" alt="">' +
+        '<img src="./assets/pp.png" width="10%" height="auto" alt="">' +
         '<div class="user-name-date">' +
         '<p class="friend-name">' + friend['name'] + '</p><p class="friend-email">' + friend['email'] + '</p>' +
         '</div></div>' +
@@ -146,12 +147,13 @@ window.onload = () => {
 
     await setfriendsListeners()
 
+    document.getElementById('friends-nav').style.boxShadow='0px 8px rgb(0 0 0 / 50%)'
     document.getElementById('friends-nav').addEventListener('click', navigateFriends)
 
     async function blockfriend(e) {
 
       function getfriendId() {
-        return e.target.parentElement.parentElement.parentElement.id
+        return e.currentTarget.parentElement.parentElement.parentElement.id
       }
 
       var block_friend_id = await getfriendId()
@@ -159,6 +161,7 @@ window.onload = () => {
       console.log(block_friend_id)
       let url = 'http://localhost/facebook/facebook/api/block_Unblock_User.php'
       block_flag = !block_flag
+      console.log(block_flag)
       let object = {
         'user_id': user_id,
         'block_user_id': block_friend_id,
@@ -176,7 +179,7 @@ window.onload = () => {
     async function unfriend(e) {
 
       function getfriendId() {
-        return e.target.parentElement.parentElement.parentElement.id
+        return e.currentTarget.parentElement.parentElement.parentElement.id
       }
 
       var unfriend_id = await getfriendId()
@@ -223,7 +226,7 @@ window.onload = () => {
           pagesContainer.innerHTML += '<div class="friend-container" id="' + friend['id'] + '">' +
             '<div class="user-profile">' +
             '<div class="user-image-name-date">' +
-            '<img src="./pp.png" width="10%" height="auto" alt="">' +
+            '<img src="./assets/pp.png" width="10%" height="auto" alt="">' +
             '<div class="user-name-date">' +
             '<p class="friend-name">' + friend['name'] + '</p><p class="friend-email">' + friend['email'] + '</p>' +
             '</div></div>' +
@@ -250,11 +253,13 @@ window.onload = () => {
 
       await setListeners()
 
+      document.getElementById('requests').style.boxShadow='0px 8px rgb(0 0 0 / 50%)'
+
       document.getElementById('friends-nav').addEventListener('click', navigateFriends)
 
       async function acceptFriend(e) {
         function getAcceptId() {
-          return e.target.parentElement.parentElement.parentElement.id
+          return e.currentTarget.parentElement.parentElement.parentElement.id
         }
         var accept_friend_id = await getAcceptId()
 
@@ -276,7 +281,7 @@ window.onload = () => {
 
       async function rejectFriend(e) {
         function getRejectId() {
-          return e.target.parentElement.parentElement.parentElement.id
+          return e.currentTarget.parentElement.parentElement.parentElement.id
         }
         var reject_friend_id = await getRejectId()
 
@@ -328,7 +333,7 @@ window.onload = () => {
         pagesContainer.innerHTML += '<div class="post-container">' +
           '<div class="user-profile">' +
           '<div class="user-image-name-date">' +
-          '<img src="./pp.png" width="10%" height="auto" alt="">' +
+          '<img src="./assets/pp.png" width="10%" height="auto" alt="">' +
           '<div class="user-name-date">' +
           '<p>' + user_name + '</p><p>' + post['post_date'] + '</p>' +
           '</div></div>' +
@@ -354,7 +359,7 @@ window.onload = () => {
     await addEditListener()
 
     async function editPost(e) {
-      var post_id = e.target.parentElement.id
+      var post_id = e.currentTarget.parentElement.id
       console.log(post_id)
       var post_text = document.getElementById('text-' + post_id).innerText
       window.localStorage.setItem('post_text', post_text)
@@ -390,7 +395,7 @@ window.onload = () => {
           pagesContainer.innerHTML += '<div class="friend-container" id="' + friend['id'] + '">' +
             '<div class="user-profile">' +
             '<div class="user-image-name-date">' +
-            '<img src="./pp.png" width="10%" height="auto" alt="">' +
+            '<img src="./assets/pp.png" width="10%" height="auto" alt="">' +
             '<div class="user-name-date">' +
             '<p>' + friend['name'] + '</p><p>' + friend['email'] + '</p>' +
             '</div></div>' +
@@ -410,7 +415,7 @@ window.onload = () => {
       }
 
       async function sendRequest(e) {
-        var request_friend_id = e.target.parentElement.id
+        var request_friend_id = e.currentTarget.parentElement.id
         console.log(request_friend_id)
         let url = 'http://localhost/facebook/facebook/api/friendRequest.php'
         let object = {
