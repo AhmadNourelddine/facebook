@@ -1,5 +1,7 @@
 window.onload = function() {
 
+  console.log('sign in sign up ')
+  
   var login_btn = document.getElementById('login-btn')
   login_btn.addEventListener("click", checkLogin)
 
@@ -7,6 +9,8 @@ window.onload = function() {
   signup_btn.addEventListener("click", checkSignUp)
 
   async function checkLogin() {
+
+    console.log('logging in')
     var email = document.getElementById('email')
     var password = document.getElementById('password')
 
@@ -27,11 +31,13 @@ window.onload = function() {
     let id = data['id']
     console.log(id)
 
-    window.localStorage.setItem('user_id', id)
-    window.localStorage.setItem('user_name', data['name'])
-    window.localStorage.setItem('user_email', data['email'])
 
     if (data['status']) {
+
+      window.localStorage.setItem('user_id', id)
+      window.localStorage.setItem('user_name', data['name'])
+      window.localStorage.setItem('user_email', data['email'])
+      // window.localStorage.setItem('image', data['image'])
       window.location.href = "http://localhost/facebook/facebook/homePage.html"
     }
   }

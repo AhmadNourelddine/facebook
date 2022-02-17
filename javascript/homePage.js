@@ -32,7 +32,7 @@ window.onload = () => {
       '<div class="post-input">' +
       '<textarea type="text" name="" value="" id="input-post-text" placeholder="Write Post Here ..."></textarea>' +
       '</div>' +
-      '<button type="button" name="button" id="user-post-btn">Post</button>' +
+      '<button type="button" name="button" class="post-cancel-btn" id="user-post-btn">Post</button>' +
       '</div>'
 
     document.getElementById('user-post-btn').addEventListener('click', postTodb)
@@ -86,11 +86,35 @@ window.onload = () => {
         '</div></div></div>' +
         '<div class="post-text">' +
         '<p>' + post['text'] + '</p>' +
-        '<p class="users-likes" id="likes"' + post['id'] + '><i class="fa-solid fa-thumbs-up"></i>&nbsp;Likes ' + post['likes'] + '</p>' +
+        '<p class="users-likes" id='+post['id']+'><i class="fa-solid fa-thumbs-up"></i>&nbsp;Likes ' + post['likes'] + '</p>' +
         '</div>' +
         '</div>'
       i = i + 1
     }
+
+    var likesbtns = document.getElementsByClassName('requests')
+
+    for(var l=0;l<likesbtn.length;l++)
+    {
+      likesbtns[l].addEventListener('click',likePost)
+    }
+
+    // async function likePost(e)
+    // {
+    //   var post = e.currentTarget.id
+    //   let url = 'http://localhost/facebook/facebook/api/likepost.php'
+    //   let object = {
+    //     'user_id': user_id
+    //     'post_id': post
+    //   }
+    //   let data = await axios.post(url, object)
+    //     .then(async (resp) => {
+    //       return resp.data
+    //     })
+    //     .catch((e) => {
+    //       console.log(e)
+    //     })
+    // }
 
   }
 
@@ -174,6 +198,11 @@ window.onload = () => {
         .catch((e) => {
           console.log(e)
         })
+        if(block_flag){
+          document.getElementById(block_friend_id).style.opacity=0.5
+        }else{
+          document.getElementById(block_friend_id).style.opacity=1
+        }
     }
 
     async function unfriend(e) {
@@ -359,7 +388,7 @@ window.onload = () => {
     await addEditListener()
 
     async function editPost(e) {
-      var post_id = e.currentTarget.parentElement.id
+      var post_id = e.target.parentElement.id
       console.log(post_id)
       var post_text = document.getElementById('text-' + post_id).innerText
       window.localStorage.setItem('post_text', post_text)
@@ -415,7 +444,7 @@ window.onload = () => {
       }
 
       async function sendRequest(e) {
-        var request_friend_id = e.currentTarget.parentElement.id
+        var request_friend_id = e.target.parentElement.id
         console.log(request_friend_id)
         let url = 'http://localhost/facebook/facebook/api/friendRequest.php'
         let object = {
@@ -430,6 +459,10 @@ window.onload = () => {
           .catch((e) => {
             console.log(e)
           })
+
+          pagesContainer.innerHTML = '<div class="search-container">' +
+            '<input value="" name="" placeholder="Add Friends" id="search_input">' +
+            '<i class="fa-solid fa-magnifying-glass fa-3x" id="search"></i></div>'
 
       }
     }
@@ -449,8 +482,8 @@ window.onload = () => {
       '<div class="post-input">' +
       '<textarea type="text" name="" value="" id="input-post-text" placeholder="Write Post Here ..."></textarea>' +
       '</div>' +
-      '<button type="button" name="button" id="user-post-btn">Post</button>' +
-      '<button type="button" name="button" id="user-cancel-btn">Cancel</button>' +
+      '<button type="button" name="button" class="post-cancel-btn" id="user-post-btn">Post</button>' +
+      '<button type="button" name="button" class="post-cancel-btn" id="user-cancel-btn">Cancel</button>' +
       '</div>'
 
     document.getElementById('user-post-btn').addEventListener('click', editPost)
