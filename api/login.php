@@ -8,7 +8,7 @@ if(isset($array['email']) && isset($array['pass']))
   $email = $array['email'];
   $pass = hash('sha256',$array['pass']);
 }else {
-  die("no required information");
+  echo("no required information");
 }
 
 $check_user_exist = $mysqli-> prepare("select u.name,u.email,u.id from users u where email=? and password=?");
@@ -27,6 +27,7 @@ if($array->num_rows > 0)
 }
 else{
   $user_info['status']=false;
+  echo("user not found");
 }
 
 $jsonfile = json_encode($user_info);
