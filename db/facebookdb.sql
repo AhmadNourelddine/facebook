@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 16, 2022 at 12:08 AM
+-- Generation Time: Feb 20, 2022 at 07:25 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.14
 
@@ -40,11 +40,11 @@ CREATE TABLE `friends` (
 --
 
 INSERT INTO `friends` (`id`, `friend1_id`, `friend2_id`, `date`, `friend_blocked`) VALUES
-(2, 1, 12, '2022-02-13 14:38:37', 0),
-(5, 1, 14, '2022-02-13 14:40:10', 0),
-(7, 14, 13, '2022-02-13 14:42:37', 0),
-(8, 13, 11, '2022-02-13 14:42:37', 0),
-(10, 11, 14, '2022-02-13 15:01:58', 0);
+(53, 22, 23, '2022-02-17 09:41:35', 0),
+(54, 23, 22, '2022-02-17 09:59:22', 0),
+(56, 23, 25, '2022-02-17 12:46:53', 0),
+(57, 24, 25, '2022-02-17 16:26:10', 0),
+(58, 24, 22, '2022-02-17 16:53:22', 0);
 
 -- --------------------------------------------------------
 
@@ -64,12 +64,12 @@ CREATE TABLE `friends_requests` (
 --
 
 INSERT INTO `friends_requests` (`id`, `user_id`, `user_requester_id`, `date_of_request`) VALUES
-(1, 11, 1, '2022-02-14 19:05:46'),
-(2, 18, 17, '2022-02-14 19:24:35'),
-(3, 19, 17, '2022-02-14 19:24:35'),
-(6, 13, 19, '2022-02-14 19:26:46'),
-(7, 13, 17, '2022-02-14 19:26:46'),
-(8, 1, 19, '2022-02-16 00:50:05');
+(59, 28, 23, '2022-02-17 12:40:10'),
+(60, 28, 23, '2022-02-17 12:40:12'),
+(62, 23, 24, '2022-02-17 16:23:47'),
+(65, 23, 27, '2022-02-17 16:40:43'),
+(67, 29, 27, '2022-02-17 16:41:40'),
+(70, 31, 22, '2022-02-20 01:10:30');
 
 -- --------------------------------------------------------
 
@@ -88,9 +88,12 @@ CREATE TABLE `likes` (
 --
 
 INSERT INTO `likes` (`id`, `post_id`, `user_like_id`) VALUES
-(1, 1, 1),
-(2, 1, 14),
-(3, 2, 11);
+(8, 13, 22),
+(11, 18, 27),
+(13, 13, 22),
+(14, 14, 25),
+(15, 20, 31),
+(16, 14, 22);
 
 -- --------------------------------------------------------
 
@@ -110,15 +113,16 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `user_id`, `text`, `post_date`) VALUES
-(1, 1, 'hellooooossss', '2022-02-13 17:10:01'),
-(2, 1, 'byeeezzzz', '2022-02-13 17:10:01'),
-(3, 12, 'hi ana sami hello lower case', '2022-02-13 17:28:17'),
-(4, 11, 'hi ana hasan', '2022-02-13 17:28:17'),
-(5, 1, 'post 1 ahmad hello', '2022-02-14 12:57:56'),
-(6, 1, 'post 2 ahmad helloz', '2022-02-14 12:57:56'),
-(7, 1, 'post 3 byeeee ahmad', '2022-02-14 12:57:56'),
-(8, 12, '\"hi again ana sami\"', '2022-02-14 16:57:27'),
-(9, 1, 'ahmad from gui', '2022-02-14 23:03:20');
+(11, 22, 'ahmads first post ...\n', '2022-02-16 20:38:07'),
+(12, 22, 'ahmads post 3 here', '2022-02-16 20:40:12'),
+(13, 23, 'charbel 1st post ', '2022-02-16 20:41:49'),
+(14, 23, 'charbels 2nd post ...', '2022-02-16 20:44:23'),
+(15, 24, 'hello hadis first post ', '2022-02-16 20:45:32'),
+(16, 24, 'hello again hadi\'s 2nd post', '2022-02-16 20:46:01'),
+(17, 24, 'test test test', '2022-02-16 21:43:31'),
+(18, 27, 'hello first post from George ... ', '2022-02-17 16:36:41'),
+(19, 25, 'hello post from yvona', '2022-02-18 16:37:27'),
+(20, 31, 'hello 1st post from maha', '2022-02-18 17:35:08');
 
 -- --------------------------------------------------------
 
@@ -139,14 +143,17 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `password`, `email`, `image`) VALUES
-(1, 'ahmad ', '123', 'ahmad.nrdn', NULL),
-(11, 'hasan', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'hasan.nrdn', NULL),
-(12, 'sami', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'sami.hey', NULL),
-(13, 'hadi', '12345', 'hadi.email', NULL),
-(14, 'charbel', '5678', 'charbel.email', NULL),
-(17, 'housam', '45678', 'housam.com', NULL),
-(18, 'mhmd', '89076', 'mhmd.com', NULL),
-(19, 'kamal', '3434', 'kamal.com', NULL);
+(22, 'ahmad', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'ahmad@email.com', NULL),
+(23, 'charbel', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'charbel@email.com', NULL),
+(24, 'hadi', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'hadi@email.com', NULL),
+(25, 'yvona', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'yvona@email.com', NULL),
+(26, 'julian', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'julian@email.com', NULL),
+(27, 'george', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'george@email.com', NULL),
+(28, 'noha', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'noha@email.com', NULL),
+(29, 'fouad', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'fouad@email.com', NULL),
+(30, 'maryam', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'maryam@email.com', NULL),
+(31, 'maha', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'maha@email.com', NULL),
+(32, '', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', '', NULL);
 
 --
 -- Indexes for dumped tables
@@ -197,31 +204,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `friends`
 --
 ALTER TABLE `friends`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `friends_requests`
 --
 ALTER TABLE `friends_requests`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- Constraints for dumped tables
