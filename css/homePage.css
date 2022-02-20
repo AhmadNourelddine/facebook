@@ -305,15 +305,16 @@ body {
 .search-container input {
   background: none;
   border: none;
+  color: white;
   border-left: black solid 4px;
-  border-color: rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 255, 255, 0.6);
   font-size: 200%;
   padding: 0% 5%;
   width: inherit;
 }
 
 ::placeholder {
-  color: black;
+  color: white;
   opacity: 0.7;
 }
 
@@ -330,6 +331,10 @@ body {
 
 .add-friend i {
   margin-right: 1em;
+}
+
+#search{
+  color: white
 }
 
 @media (max-width:800px) {
