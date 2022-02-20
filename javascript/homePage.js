@@ -178,6 +178,7 @@ window.onload = () => {
     var i = 1
     while (data['user' + i]) {
       let friend = data['user' + i]
+
       pagesContainer.innerHTML += '<div class="friend-container" id="' + friend['id'] + '">' +
         '<div class="user-profile">' +
         '<div class="user-image-name-date">' +
@@ -189,6 +190,7 @@ window.onload = () => {
         '<i class="fa-solid fa-user-slash fa-lg"></i><p>Block</p></div>' +
         '<div class="reject unfriend"><i class="fa-solid fa-user-xmark fa-lg"></i><p>Unfriend</p>' +
         '</div></div></div></div>'
+      if(friend['friend_blocked'] ){document.getElementById(friend['id']).style.opacity = '0.5'}
       i = i + 1
     }
 

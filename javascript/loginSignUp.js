@@ -1,7 +1,7 @@
 window.onload = function() {
 
   console.log('sign in sign up ')
-  
+
   var login_btn = document.getElementById('login-btn')
   login_btn.addEventListener("click", checkLogin)
 
@@ -13,7 +13,7 @@ window.onload = function() {
     console.log('logging in')
     var email = document.getElementById('email')
     var password = document.getElementById('password')
-
+    console.log(email.value)
     let url = 'http://localhost/facebook/facebook/api/login.php'
     let object = {
       'email': email.value,
@@ -27,6 +27,7 @@ window.onload = function() {
       .catch((e) => {
         console.log(e)
       })
+
     console.log(data)
     let id = data['id']
     console.log(id)
@@ -38,7 +39,7 @@ window.onload = function() {
       window.localStorage.setItem('user_name', data['name'])
       window.localStorage.setItem('user_email', data['email'])
       // window.localStorage.setItem('image', data['image'])
-      window.location.href = "http://localhost/facebook/facebook/homePage.html"
+      window.location.replace("http://localhost/facebook/facebook/homePage.html")
     }
   }
 
